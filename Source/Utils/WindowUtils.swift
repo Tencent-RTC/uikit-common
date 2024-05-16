@@ -2,7 +2,7 @@
 //  WindowUtils.swift
 //  TUIKitCommon
 //
-//  Created by 于西巍 on 2023/10/16.
+//  Created by krab on 2023/10/16.
 //
 
 import Foundation
@@ -18,7 +18,7 @@ public class WindowUtils {
         }
         return UIApplication.shared.windows.first
     }
-
+    
     public static func getCurrentWindowViewController() -> UIViewController? {
         var keyWindow: UIWindow?
         for window in UIApplication.shared.windows {
@@ -53,8 +53,12 @@ public class WindowUtils {
     }
     
     public static var isPortrait: Bool {
-        guard let isPortrait = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation.isPortrait as? Bool
-        else { return UIDevice.current.orientation.isPortrait }
-        return isPortrait
+        if #available(iOS 13.0, *) {
+            guard let isPortrait = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation.isPortrait as? Bool
+            else { return UIDevice.current.orientation.isPortrait }
+            return isPortrait
+        } else {
+            return UIDevice.current.orientation.isPortrait
+        }
     }
 }

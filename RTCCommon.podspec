@@ -17,7 +17,7 @@ Pod::Spec.new do |spec|
   spec.swift_version = '5.0'
   
   # spec.source = { :path => './'}
-  spec.source = { :git => 'https://github.com/Tencent-RTC/uikit-common.git', :tag => '1.0.0' }
+  spec.source = { :git => 'https://github.com/Tencent-RTC/uikit-common.git', :tag => 'v1.0.0' }
   spec.source_files = 'Source/**/**/*.*', 'Source/Utils/**/*.*'
   
   spec.pod_target_xcconfig = {

@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 	
   spec.name         = "RTCCommon"
-  spec.version      = "1.0.0"
+  spec.version      = "1.0.1"
   spec.platform     = :ios
   spec.ios.deployment_target = '12.0'
   spec.license      = { :type => 'Proprietary',
@@ -13,16 +13,10 @@ Pod::Spec.new do |spec|
   spec.documentation_url = 'https://github.com/Tencent-RTC/uikit-common.git'
   spec.authors      = 'tencent rtc uikit'
   spec.summary      = 'RTCCommon'
-  spec.xcconfig     = { 'VALID_ARCHS' => 'armv7 arm64 x86_64' }
   spec.swift_version = '5.0'
   
-  # spec.source = { :path => './'}
-  spec.source = { :git => 'https://github.com/Tencent-RTC/uikit-common.git', :tag => 'v1.0.0' }
+  spec.source = { :git => 'https://github.com/Tencent-RTC/uikit-common.git', :tag => 'v1.0.1' }
   spec.source_files = 'Source/**/**/*.*', 'Source/Utils/**/*.*'
   
-  spec.pod_target_xcconfig = {
-    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
-  }
-  spec.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
   spec.dependency 'SnapKit'
 end

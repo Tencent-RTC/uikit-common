@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 	
   spec.name         = "RTCCommon"
-  spec.version      = "1.0.1"
+  spec.version      = "1.0.2"
   spec.platform     = :ios
   spec.ios.deployment_target = '12.0'
   spec.license      = { :type => 'Proprietary',
@@ -15,7 +15,7 @@ Pod::Spec.new do |spec|
   spec.summary      = 'RTCCommon'
   spec.swift_version = '5.0'
   
-  spec.source = { :git => 'https://github.com/Tencent-RTC/uikit-common.git', :tag => 'v1.0.1' }
+  spec.source = { :git => 'https://github.com/Tencent-RTC/uikit-common.git', :tag => 'v1.0.2' }
   spec.source_files = 'Source/**/**/*.*', 'Source/Utils/**/*.*'
   
   spec.dependency 'SnapKit'

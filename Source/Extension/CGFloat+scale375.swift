@@ -1,6 +1,6 @@
 //
 //  CGFloat+scale375.swift
-//  TUIKitCommon
+//  RTCCommon
 //
 //  Created by krabyu on 2023/10/16.
 //  Copyright © 2023 Tencent. All rights reserved.

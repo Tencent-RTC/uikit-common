@@ -1,6 +1,6 @@
 //
 //  RTCBaseView.swift
-//  TUIKitCommon
+//  RTCCommon
 //
 //  Created by aby on 2024/5/14.
 //
@@ -22,11 +22,9 @@ func warning(_ string: String, fileName: String = #file, methodName: String = #f
 }
 
 open class RTCBaseView: UIView {
-    open var isViewReady = true
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        constructViewHierarchy()
     }
     
     @available(*, unavailable, message: "Loading this view from a nib is unsupported")
@@ -34,15 +32,15 @@ open class RTCBaseView: UIView {
         fatalError("Loading this view from a nib is unsupported")
     }
     
-    override open func didMoveToWindow() {
+    private var isViewReady = false
+    open override func didMoveToWindow() {
         super.didMoveToWindow()
-        guard !isViewReady else {
-            return
-        }
+        guard !isViewReady else { return }
+        constructViewHierarchy()
         activateConstraints()
-        setupViewStyle()
         bindInteraction()
-        isViewReady = false
+        setupViewStyle()
+        isViewReady = true
     }
     
     // This function must to be override.

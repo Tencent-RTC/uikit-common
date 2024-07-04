@@ -1,6 +1,6 @@
 //
 //  AlertPanel.swift
-//  TUIKitCommon
+//  RTCCommon
 //
 //  Created by krabyu on 2023/11/14.
 //

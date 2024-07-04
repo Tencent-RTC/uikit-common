@@ -1,6 +1,6 @@
 //
 //  PermissionManager.swift
-//  TUIKitCommon
+//  RTCCommon
 //
 //  Created by WesleyLei on 2023/9/27.
 //  Copyright © 2023 Tencent. All rights reserved.

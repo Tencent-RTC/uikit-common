@@ -1,6 +1,6 @@
 //
 //  PopUpPanel.swift
-//  TUIKitCommon
+//  RTCCommon
 //
 //  Created by krabyu on 2023/10/12.
 //  Copyright © 2023 Tencent. All rights reserved.

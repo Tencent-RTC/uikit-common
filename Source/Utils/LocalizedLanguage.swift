@@ -1,6 +1,6 @@
 //
 //  LocalizedLanguage.swift
-//  TUIKitCommon
+//  RTCCommon
 //
 //  Created by krabyu on 2024/4/16.
 //

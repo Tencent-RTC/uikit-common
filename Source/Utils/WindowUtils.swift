@@ -1,6 +1,6 @@
 //
 //  WindowUtils.swift
-//  TUIKitCommon
+//  RTCCommon
 //
 //  Created by krab on 2023/10/16.
 //
@@ -18,7 +18,7 @@ public class WindowUtils {
         }
         return UIApplication.shared.windows.first
     }
-    
+
     public static func getCurrentWindowViewController() -> UIViewController? {
         var keyWindow: UIWindow?
         for window in UIApplication.shared.windows {

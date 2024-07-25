@@ -9,10 +9,20 @@ import SnapKit
 import UIKit
 
 public class PopupViewController: UIViewController {
-    
     private let contentView: UIView
-    public init(contentView: UIView) {
+    private let supportBlurView: Bool
+    
+    private let blurEffectView: UIVisualEffectView = {
+        let blurEffect = UIBlurEffect(style: .dark)
+        let view = UIVisualEffectView(effect: blurEffect)
+        view.frame = UIScreen.main.bounds
+        view.alpha = 0
+        return view
+    }()
+    
+    public init(contentView: UIView, supportBlurView: Bool = true) {
         self.contentView = contentView
+        self.supportBlurView = supportBlurView
         super.init(nibName: nil, bundle: nil)
         modalPresentationStyle = .custom
         transitioningDelegate = self
@@ -41,6 +51,9 @@ extension PopupViewController: UIViewControllerTransitioningDelegate {
         } else {
             transitionAnimator.alertTransitionPosition = .right
         }
+        if supportBlurView {
+            showBlurEffectView(source: source, duration: transitionAnimator.duration)
+        }
         return transitionAnimator
     }
     
@@ -52,6 +65,29 @@ extension PopupViewController: UIViewControllerTransitioningDelegate {
         } else {
             transitionAnimator.alertTransitionPosition = .right
         }
+        if supportBlurView {
+            hiddenBlurEffectView(duration: transitionAnimator.duration)
+        }
         return transitionAnimator
+    }
+    
+    private func showBlurEffectView(source: UIViewController, duration: TimeInterval) {
+        source.view.addSubview(blurEffectView)
+        UIView.animate(withDuration: duration) { [weak self] in
+            guard let self = self else { return }
+            self.blurEffectView.alpha = 1
+        }
+    }
+    
+    private func hiddenBlurEffectView(duration: TimeInterval) {
+        UIView.animate(withDuration: duration) { [weak self] in
+            guard let self = self else { return }
+            self.blurEffectView.alpha = 0
+        } completion: { [weak self] finished in
+            guard let self = self else { return }
+            if finished {
+                self.blurEffectView.removeFromSuperview()
+            }
+        }
     }
 }

@@ -1,0 +1,5 @@
+# 忽略podspec文件
+*_Open.podspec
+
+# 忽略 Example 文件夹
+Example/

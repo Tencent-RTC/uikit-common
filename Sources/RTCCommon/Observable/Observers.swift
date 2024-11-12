@@ -8,6 +8,7 @@ import Foundation
 
 class Observer {}
 
+@available(*, deprecated, message: "user ObservableState instead.")
 public class Observable<Type> {
     
     // MARK: - Callback
@@ -26,6 +27,7 @@ public class Observable<Type> {
         }
     }
     
+    @available(*, deprecated, message: "user ObservableState.state instead.")
     public var value: Type {
         didSet {
             removeNilObserverCallbacks()
@@ -44,6 +46,7 @@ public class Observable<Type> {
     }
     
     // MARK: - Object Lifecycle
+    @available(*, deprecated, message: "user ObservableState(initialState:) instead.")
     public init(_ value: Type) {
         self.value = value
     }
@@ -51,6 +54,7 @@ public class Observable<Type> {
     // MARK: - Managing Observers
     private var callbacks: [Callback] = []
     
+    @available(*, deprecated, message: "user ObservableState.subscribe(selector:) or ObservableState.subscribe() instead.")
     public func addObserver(
         _ observer: AnyObject,
         removeIfExists: Bool = true,
@@ -66,6 +70,7 @@ public class Observable<Type> {
         }
     }
     
+    @available(*, deprecated, message: "user ObservableState instead.")
     public func removeObserver(_ observer: AnyObject) {
         callbacks = callbacks.filter { $0.observer !== observer }
     }

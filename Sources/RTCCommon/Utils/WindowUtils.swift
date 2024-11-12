@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 public class WindowUtils {
     public static func getCurrentWindow() -> UIWindow? {

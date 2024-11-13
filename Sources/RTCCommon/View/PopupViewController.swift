@@ -71,6 +71,14 @@ extension PopupViewController: UIViewControllerTransitioningDelegate {
         return transitionAnimator
     }
     
+    public override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        super.dismiss(animated: flag, completion: completion)
+        if !flag && supportBlurView {
+            blurEffectView.alpha = 0
+            blurEffectView.removeFromSuperview()
+        }
+    }
+    
     private func showBlurEffectView(source: UIViewController, duration: TimeInterval) {
         source.view.addSubview(blurEffectView)
         UIView.animate(withDuration: duration) { [weak self] in

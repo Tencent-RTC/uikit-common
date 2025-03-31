@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SnapKit
 import UIKit
 
 public enum PopupPanelAction {
@@ -90,12 +89,21 @@ class PopupPanelView: UIView {
     }
 
     private func activateConstraints() {
-        blurView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        panelControl.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
+        blurView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            blurView.topAnchor.constraint(equalTo: topAnchor),
+            blurView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            blurView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            blurView.trailingAnchor.constraint(equalTo: trailingAnchor)
+        ])
+        
+        panelControl.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            panelControl.topAnchor.constraint(equalTo: topAnchor),
+            panelControl.bottomAnchor.constraint(equalTo: bottomAnchor),
+            panelControl.leadingAnchor.constraint(equalTo: leadingAnchor),
+            panelControl.trailingAnchor.constraint(equalTo: trailingAnchor)
+        ])
         panelSubView.updateRootViewOrientation(isPortrait: isPortrait)
     }
 
@@ -136,9 +144,13 @@ public class PopupPanelController: UIViewController {
 
     override public func viewDidLoad() {
         view.addSubview(rootView)
-        rootView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
+        rootView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            rootView.topAnchor.constraint(equalTo: view.topAnchor),
+            rootView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            rootView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            rootView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
         rootView.action.addObserver(self) { [weak self] action, _ in
             if action == .close {
                 self?.dismiss(animated: true)

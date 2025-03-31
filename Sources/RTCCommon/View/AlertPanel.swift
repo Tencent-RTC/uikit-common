@@ -5,7 +5,6 @@
 //  Created by krabyu on 2023/11/14.
 //
 
-import SnapKit
 import UIKit
 
 public class AlertDesignConfig {
@@ -118,37 +117,58 @@ extension AlertPanel {
         let panelWithoutMessageHeight = 132.scale375Height()
         let panelHeight = panelWithoutMessageHeight + messageLabel.frame.size.height
 
-        snp.remakeConstraints { make in
-            make.centerX.centerY.equalToSuperview()
-            make.width.equalTo(323.scale375Width())
-            make.height.equalTo(panelHeight)
+        if let superview = superview {
+            translatesAutoresizingMaskIntoConstraints = false
+            // remove constraint
+            constraints.forEach { removeConstraint($0) }
+            superview.constraints.forEach { constraint in
+                if let firstItem = constraint.firstItem as? UIView, firstItem == self {
+                    superview.removeConstraint(constraint)
+                }
+                if let secondItem = constraint.secondItem as? UIView, secondItem == self {
+                    superview.removeConstraint(constraint)
+                }
+            }
+            // add constraint
+            NSLayoutConstraint.activate([
+                centerXAnchor.constraint(equalTo: superview.centerXAnchor),
+                centerYAnchor.constraint(equalTo: superview.centerYAnchor),
+                widthAnchor.constraint(equalToConstant: 323.scale375Width()),
+                heightAnchor.constraint(equalToConstant: panelHeight)
+            ])
         }
 
-        titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(24.scale375Height())
-            make.centerX.equalToSuperview()
-            make.width.equalToSuperview()
-            make.height.equalTo(25.scale375Height())
-        }
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 24.scale375Height()),
+            titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            titleLabel.widthAnchor.constraint(equalTo: widthAnchor),
+            titleLabel.heightAnchor.constraint(equalToConstant: 25.scale375Height())
+        ])
 
-        messageLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(12.scale375Height())
-            make.leading.equalToSuperview().offset(24.scale375Width())
-            make.trailing.equalToSuperview().offset(-24.scale375Width())
-            make.height.equalTo(messageLabel.frame.size.height)
-        }
+        messageLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12.scale375Height()),
+            messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24.scale375Width()),
+            messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24.scale375Width()),
+            messageLabel.heightAnchor.constraint(equalToConstant: messageLabel.frame.size.height)
+        ])
 
-        lineView.snp.makeConstraints { make in
-            make.top.equalTo(messageLabel.snp.bottom).offset(17.scale375Height())
-            make.leading.trailing.equalToSuperview()
-            make.height.equalTo(designConfig.lineWidth)
-        }
+        lineView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            lineView.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 17.scale375Height()),
+            lineView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            lineView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            lineView.heightAnchor.constraint(equalToConstant: designConfig.lineWidth)
+        ])
 
-        alertButton.snp.makeConstraints { make in
-            make.top.equalTo(lineView.snp.bottom)
-            make.height.equalTo(54.scale375Height())
-            make.leading.trailing.equalToSuperview()
-        }
+        alertButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            alertButton.topAnchor.constraint(equalTo: lineView.bottomAnchor),
+            alertButton.heightAnchor.constraint(equalToConstant: 54.scale375Height()),
+            alertButton.leadingAnchor.constraint(equalTo: leadingAnchor),
+            alertButton.trailingAnchor.constraint(equalTo: trailingAnchor)
+        ])
     }
 }
 

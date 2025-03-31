@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 	
   spec.name         = "RTCCommon"
-  spec.version      = "1.1.0"
+  spec.version      = "1.2.0"
   spec.platform     = :ios
   spec.ios.deployment_target = '12.0'
   spec.license      = { :type => 'Proprietary',
@@ -23,6 +23,5 @@ Pod::Spec.new do |spec|
     'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
   }
   spec.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
-  spec.dependency 'SnapKit'
   
 end

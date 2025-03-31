@@ -5,7 +5,6 @@
 //  Created by aby on 2024/3/20.
 //
 
-import SnapKit
 import UIKit
 
 public class PopupViewController: UIViewController {
@@ -69,14 +68,6 @@ extension PopupViewController: UIViewControllerTransitioningDelegate {
             hiddenBlurEffectView(duration: transitionAnimator.duration)
         }
         return transitionAnimator
-    }
-    
-    public override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
-        super.dismiss(animated: flag, completion: completion)
-        if !flag && supportBlurView {
-            blurEffectView.alpha = 0
-            blurEffectView.removeFromSuperview()
-        }
     }
     
     private func showBlurEffectView(source: UIViewController, duration: TimeInterval) {
